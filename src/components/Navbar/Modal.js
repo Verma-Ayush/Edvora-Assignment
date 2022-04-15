@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const Modal = ({ setRides, rides, allRidess }) => {
-  const [cityName, setCityName] = useState("all");
   const [stateName, setStateName] = useState("all");
 
   const setStateRides = (_stateName) => {
@@ -13,12 +12,10 @@ const Modal = ({ setRides, rides, allRidess }) => {
   };
 
   const setCityRides = (_cityName) => {
-    setCityName(_cityName);
-
     const newRides = allRidess.filter((r) => {
       return (
         (stateName === "all" || r.state === stateName) &&
-        (_cityName === "all" || r.city === _cityName)
+        (_cityName === "City" || r.city === _cityName)
       );
     });
     setRides(newRides);
@@ -27,8 +24,8 @@ const Modal = ({ setRides, rides, allRidess }) => {
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
-  var states = [],
-    cities = [];
+  var states = [];
+  var cities = ["City"];
   for (let i = 0; i < allRidess.length; i++) {
     states.push(allRidess[i].state);
   }
@@ -47,10 +44,7 @@ const Modal = ({ setRides, rides, allRidess }) => {
       <p>Filters</p>
       <hr />
       <div className="Modal-filters">
-        <select
-          id="stateSelect"
-          onChange={(e) => setStateRides(e.target.value)}
-        >
+        <select id="stateSelect" onClick={(e) => setStateRides(e.target.value)}>
           <option value={"all"}>State</option>
           {states.map((e, id) => {
             return (
@@ -61,7 +55,6 @@ const Modal = ({ setRides, rides, allRidess }) => {
           })}
         </select>
         <select id="citySelect" onChange={(e) => setCityRides(e.target.value)}>
-          <option value={"all"}>City</option>
           {cities.map((e, id) => {
             return (
               <option value={e} key={id}>
