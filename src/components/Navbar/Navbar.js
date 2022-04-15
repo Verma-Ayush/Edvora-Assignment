@@ -3,7 +3,13 @@ import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import Filter from "./Filter";
 
-const Navbar = ({ upcomingRidesCount, pastRidesCount, setRides, rides }) => {
+const Navbar = ({
+  upcomingRidesCount,
+  pastRidesCount,
+  setRides,
+  rides,
+  allRides,
+}) => {
   const currPath = useLocation().pathname;
   return (
     <div className="navbar">
@@ -24,7 +30,7 @@ const Navbar = ({ upcomingRidesCount, pastRidesCount, setRides, rides }) => {
           Past Rides ({pastRidesCount})
         </Link>
       </div>
-      <Filter setRides={setRides} rides={rides} />
+      <Filter setRides={setRides} rides={rides} allRides={allRides} />
     </div>
   );
 };

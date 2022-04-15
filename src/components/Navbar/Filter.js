@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import vector from "../../images/vector.png";
 import Modal from "./Modal";
 
-const Filter = ({ setRides, rides }) => {
+const Filter = ({ setRides, rides, allRides }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Fragment>
@@ -20,6 +20,7 @@ const Filter = ({ setRides, rides }) => {
           setIsModalOpen={setIsModalOpen}
           setRides={setRides}
           rides={rides}
+          allRidess={allRides}
         />
       )}
     </Fragment>

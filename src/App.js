@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NearestRides from "./components/Rides/NearestRides";
 import UpcomingRides from "./components/Rides/UpcomingRides";
 import PastRides from "./components/Rides/PastRides";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Loader from "./components/Loader/Loader";
 import getUser from "./controllers/getUser";
 import getRides from "./controllers/getRides";
@@ -19,6 +19,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const [rides, setRides] = useState([]);
+  const allRidesRef = useRef();
 
   const fetchData = async () => {
     const userData = await getUser();
@@ -26,6 +27,7 @@ function App() {
     setUser(userData);
     setRides(ridesData);
     setLoading(false);
+    allRidesRef.current = ridesData;
   };
 
   const pastRides = getPastRides(rides);
@@ -53,6 +55,11 @@ function App() {
                 nearestRidesCount={nearestRides.length}
                 setRides={setRides}
                 rides={rides}
+                allRides={
+                  allRidesRef.current === undefined
+                    ? rides
+                    : allRidesRef.current
+                }
               />
               <Routes>
                 <Route

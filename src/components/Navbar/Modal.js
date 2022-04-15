@@ -1,35 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 
-const Modal = ({ setRides, rides }) => {
-  var allRides = [...rides];
-  const prevStateRef = useRef();
-  useEffect(() => {
-    prevStateRef.current = allRides;
-  }, []);
-
-  const [stateName, setStateName] = useState("all");
+const Modal = ({ setRides, rides, allRidess }) => {
   const [cityName, setCityName] = useState("all");
+  const [stateName, setStateName] = useState("all");
 
   const setStateRides = (_stateName) => {
     setStateName(_stateName);
-    var newRides = [];
-    if (prevStateRef.current !== undefined) {
-      newRides = prevStateRef.current.filter((r) => {
-        return r.state === _stateName;
-      });
-    } else {
-      newRides = allRides.filter((r) => {
-        return r.state === _stateName;
-      });
-    }
+    const newRides = allRidess.filter((r) => {
+      return _stateName === "all" || r.state === _stateName;
+    });
     setRides(newRides);
   };
 
   const setCityRides = (_cityName) => {
     setCityName(_cityName);
 
-    const newRides = rides.filter((r) => {
-      return _cityName === "all" || r.city === _cityName;
+    const newRides = allRidess.filter((r) => {
+      return (
+        (stateName === "all" || r.state === stateName) &&
+        (_cityName === "all" || r.city === _cityName)
+      );
     });
     setRides(newRides);
   };
@@ -37,21 +27,20 @@ const Modal = ({ setRides, rides }) => {
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
+  var states = [],
+    cities = [];
+  for (let i = 0; i < allRidess.length; i++) {
+    states.push(allRidess[i].state);
+  }
 
-  //////
-  var states = [];
-  if (prevStateRef.current !== undefined) {
-    for (let i = 0; i < prevStateRef.current.length; i++) {
-      states.push(prevStateRef.current[i].state);
-    }
-  } else {
-    for (let i = 0; i < allRides.length; i++) {
-      states.push(allRides[i].state);
+  for (let i = 0; i < allRidess.length; i++) {
+    if (allRidess[i].state === stateName || stateName === "all") {
+      cities.push(allRidess[i].city);
     }
   }
-  states.filter(onlyUnique);
 
-  /////
+  cities = cities.filter(onlyUnique);
+  states = states.filter(onlyUnique);
 
   return (
     <div className="Modal-box">
@@ -73,10 +62,10 @@ const Modal = ({ setRides, rides }) => {
         </select>
         <select id="citySelect" onChange={(e) => setCityRides(e.target.value)}>
           <option value={"all"}>City</option>
-          {rides.map((e, id) => {
+          {cities.map((e, id) => {
             return (
-              <option value={e.city} key={id}>
-                {e.city}
+              <option value={e} key={id}>
+                {e}
               </option>
             );
           })}
