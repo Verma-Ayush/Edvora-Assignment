@@ -1,0 +1,67 @@
+.active {
+  border-bottom: 2px solid white;
+}
+
+.navbar {
+  margin-bottom: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Filter {
+  display: flex;
+  align-items: center;
+}
+.Filter p {
+  color: white;
+  font-family: "Inter";
+  margin: 0 0.2vmax 0 0.5vmax;
+}
+
+.Filter:hover {
+  cursor: pointer;
+}
+
+.Filter img {
+  height: fit-content;
+}
+
+.Modal-box {
+  background-color: #101010;
+  position: absolute;
+  right: 50px;
+  top: 130px;
+  width: 15rem;
+  height: auto;
+  border-radius: 15px;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  z-index: 5;
+}
+
+.Modal-box p {
+  font-family: "Source Sans Pro", sans-serif;
+  color: #a5a5a5;
+  line-height: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-bottom: 0.7vmax;
+}
+
+hr {
+  color: #cbcbcb;
+  margin-bottom: 1vmax;
+}
+
+#stateSelect,
+#citySelect {
+  padding: 0.3vmax;
+  width: 12rem;
+  margin-bottom: 1vmax;
+  color: white;
+  background-color: #232323;
+  border: none;
+  border-radius: 4.68px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.1rem;
+  padding-right: 0.5rem;
+}

@@ -1,0 +1,56 @@
+.Ride {
+  display: flex;
+  justify-content: space-between;
+  background-color: #171717;
+  margin-top: 1vmax;
+  padding: 1.5vmax;
+  border-radius: 10px;
+}
+
+.Ride-content {
+  align-items: center;
+  display: flex;
+  width: 60%;
+}
+
+.Ride-content img {
+  border-radius: 10px;
+  margin-right: 2.5vmax;
+  object-fit: cover;
+  height: 8.5rem;
+  width: 32%;
+}
+
+.NearestRides {
+  display: flex;
+  flex-direction: column;
+}
+
+.data {
+  font-family: "Inter";
+  font-weight: 500;
+  color: white;
+}
+
+.data > p {
+  line-height: 1.8rem;
+  font-size: 1rem;
+}
+
+.data > p > span {
+  color: #cfcfcf;
+}
+
+.place {
+  display: flex;
+  color: white;
+}
+.placedata {
+  margin-right: 1vmax;
+  font-family: "Inter";
+  font-size: 0.75rem;
+  padding: 0.7vmax;
+  height: fit-content;
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.56);
+}
